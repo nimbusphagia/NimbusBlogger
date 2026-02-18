@@ -1,15 +1,11 @@
-import { Outlet, NavLink } from "react-router-dom"
+import { Outlet } from "react-router-dom"
+import Sidebar from "../components/Sidebar"
 
 export default function RootLayout() {
   return (
     <>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-      </nav>
+      <Sidebar />
       <Outlet />
-      <footer>
-        <p>Nimbusphagia</p>
-      </footer>
     </>
   )
 }
