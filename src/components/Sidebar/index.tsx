@@ -1,19 +1,23 @@
 import { NavLink } from "react-router-dom";
+import styles from './styles.module.css'
 
 export default function Sidebar() {
   return (
-    <aside>
-      <div className="sidebarItem">
-        <button className="create btn">New Entry</button>
+    <aside className={styles.aside}>
+      <div className={styles.item}>
+        <button className={styles.create}>+</button>
       </div>
-      <div className="sidebarItem">
-        <NavLink to='/dashboard'>Home</NavLink>
+      <div className={styles.item}>
+        <NavLink to='/dashboard'>Overview</NavLink>
       </div>
-      <div className="sidebarItem">
-        <NavLink to='/entries'>Entries</NavLink>
+      <div className={styles.item}>
+        <NavLink to='/entries'>Blog entries</NavLink>
       </div>
-      <div className="sidebarItem">
-        <NavLink to='/profile'>Profile</NavLink>
+      <div className={styles.item}>
+        <NavLink to='/moderation'>Moderation</NavLink>
+      </div>
+      <div className={styles.item}>
+        <NavLink to='/profile'>Account settings</NavLink>
       </div>
     </aside>
   )

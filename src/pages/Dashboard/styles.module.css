@@ -1,0 +1,18 @@
+.body {
+  font-family: 'Emblema One';
+  margin: 20px;
+  margin-right: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 20px;
+}
+
+.main {}
+
+.statistics {
+  display: flex;
+  justify-content: space-evenly;
+}

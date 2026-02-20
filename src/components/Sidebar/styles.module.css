@@ -1,0 +1,32 @@
+.aside {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  align-items: center;
+  height: fit-content;
+  min-height: 0;
+  min-width: 0;
+  max-width: 100%;
+  margin: 20px;
+  padding: 10px;
+  font-family: 'Emblema One';
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.item {
+  font-size: 18px;
+  padding: 5px 12px;
+  text-align: center;
+  transition: transform ease-out 0.1s;
+}
+
+.item:hover {
+  transform: scale(1.02);
+}
+
+.create {
+  padding: 0;
+}

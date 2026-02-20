@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'Upheaval';
+  src: url('./assets/fonts/upheavtt.woff2'), format('woff2');
+}
+
+@font-face {
+  font-family: 'Bitmap';
+  src: url('./assets/fonts/Bitmap.woff2'), format('woff2');
+}
+
+@font-face {
+  font-family: 'Calive';
+  src: url('./assets/fonts/CalivepixelRegularDemo.woff2'), format('woff2');
+}
+
+@font-face {
+  font-family: 'Vorline';
+  src: url('./assets/fonts/VorlinepixelRegularDemo.woff2'), format('woff2');
+}
+
+body {
+  --f1: 'Calive';
+  --f2: 'Upheaval';
+  --f3: 'Vorline';
+  --f4: 'Bitmap';
+  margin: 0;
+  padding: 0;
+  font-family: 'Upheaval';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+button,
+li,
+ul {
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: transparent;
+  padding: 8px 15px;
+  border: none;
+  font-size: 30px;
+}
+
+button:hover {
+  cursor: pointer;
+}

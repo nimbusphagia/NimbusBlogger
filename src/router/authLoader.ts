@@ -1,13 +1,6 @@
 import { redirect } from "react-router-dom";
 import { apiClient } from "../api/client";
-
-type Role = "AUTHOR" | "ADMIN" | "VIEWER";
-
-type User = {
-  id: string;
-  email: string;
-  role: Role;
-};
+import type { Role, User } from "../types/user";
 
 const ALLOWED_ROLES: Role[] = ["AUTHOR", "ADMIN"];
 
