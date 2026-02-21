@@ -8,6 +8,8 @@ import ErrorPage from "../pages/Error";
 import { Editor } from "../pages/Editor";
 import { dashboardLoader } from "../pages/Dashboard/loader";
 import { editorLoader } from "../pages/Editor/loader";
+import { entriesLoader } from "../pages/Entries/loader";
+import { Entries } from "../pages/Entries";
 
 export const router = createBrowserRouter([
   {
@@ -22,10 +24,20 @@ export const router = createBrowserRouter([
         loader: dashboardLoader,
       },
       {
-        path: "/editor",
-        Component: Editor,
-        loader: editorLoader,
-      },
+        path: 'entries',
+        children: [
+          {
+            index: true,
+            Component: Entries,
+            loader: entriesLoader,
+          },
+          {
+            path: ":entryId",
+            Component: Editor,
+            loader: editorLoader,
+          },
+        ]
+      }
     ],
   },
   {

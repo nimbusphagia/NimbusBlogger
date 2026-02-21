@@ -29,11 +29,14 @@ body {
   --bg1: #3c3836;
   --fg0: #fbf1c7;
   --fg1: #ebdbb2;
+  --fg2: #d5c4a1;
+  --fg3: #bdae93;
+  --fg4: #a89984;
   margin: 0;
   padding: 0;
   font-family: 'Upheaval';
-  background-color: var(--bg1);
-  color: var(--fg1);
+  background-color: var(--bg0);
+  color: var(--fg2);
 }
 
 h1,
