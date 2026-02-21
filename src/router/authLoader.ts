@@ -4,7 +4,7 @@ import type { Role, User } from "../types/user";
 
 const ALLOWED_ROLES: Role[] = ["AUTHOR", "ADMIN"];
 
-export async function authLoader() {
+export async function authLoader(): Promise<User | Response> {
   const user = await apiClient<User>("/me");
 
   if (!ALLOWED_ROLES.includes(user.role)) {

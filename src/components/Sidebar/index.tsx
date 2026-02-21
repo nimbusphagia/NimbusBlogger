@@ -8,7 +8,7 @@ export default function Sidebar() {
         <button className={styles.create}>+</button>
       </div>
       <div className={styles.item}>
-        <NavLink to='/dashboard'>Overview</NavLink>
+        <NavLink to='/'>Overview</NavLink>
       </div>
       <div className={styles.item}>
         <NavLink to='/entries'>Blog entries</NavLink>

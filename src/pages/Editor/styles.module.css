@@ -1,0 +1,20 @@
+.body {
+  background-color: var(--bg0_h);
+  border-radius: 3px;
+}
+
+.header {
+  background-color: var(--bg0_h);
+  margin: 12px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header input {
+  font-size: 20px;
+  font-family: 'Notable';
+  text-align: center;
+  width: 100%;
+}

@@ -5,3 +5,4 @@ export type User = {
   email: string;
   role: Role;
 };
+

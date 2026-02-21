@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import type { User } from "../../types/user";
 import styles from "./styles.module.css";
 import { Stat } from "../../components/Stat";
@@ -22,7 +22,7 @@ const mockEntries = [{
 
 ];
 export function Dashboard() {
-  const user = useLoaderData() as User;
+  const user = useOutletContext() as User;
   return (
     <div className={styles.body}>
       <header className={styles.header}>
