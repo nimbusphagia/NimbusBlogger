@@ -1,3 +1,4 @@
+import styles from './styles.module.css'
 import { Form, useActionData, useNavigation } from "react-router-dom";
 
 export function Login() {
@@ -6,7 +7,7 @@ export function Login() {
   const isSubmitting = navigation.state === "submitting";
 
   return (
-    <main>
+    <main className={styles.main}>
       <div>
         <h2>Login</h2>
 

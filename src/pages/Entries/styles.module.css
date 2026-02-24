@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.entry {
+  padding: 8px;
+  background-color: var(--bg0_s);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
