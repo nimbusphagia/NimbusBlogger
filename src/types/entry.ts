@@ -1,3 +1,5 @@
+import type { Block } from "./block"
+
 type InteractionCount = {
   likes?: number,
   comments?: number,
@@ -9,4 +11,5 @@ export type Entry = {
   createdAt: Date,
   publishedAt?: Date,
   _count?: InteractionCount,
+  blocks: Block[],
 }
