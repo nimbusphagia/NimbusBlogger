@@ -32,6 +32,16 @@ body {
   --fg2: #d5c4a1;
   --fg3: #bdae93;
   --fg4: #a89984;
+  --red1: #fb4934;
+  --red2: #cc241d;
+  --green1: #b8bb26;
+  --blue1: #83a598;
+  --blue2: #458588;
+  --aqua1: #8ec07c;
+  --orange1: #fe8019;
+  --purple1: #d3869b;
+  --purple2: #b16286;
+  --yellow1: #fabd2f;
   margin: 0;
   padding: 0;
   font-family: 'Upheaval';

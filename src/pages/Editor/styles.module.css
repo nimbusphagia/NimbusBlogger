@@ -1,20 +1,33 @@
 .body {
   background-color: var(--bg0_h);
   border-radius: 3px;
+  padding: 15px;
+}
+
+.editor {
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255, 0.008);
+  border-radius: 5px;
+  padding: 20px 10px;
+  height: 100%;
 }
 
 .header {
-  background-color: var(--bg0_h);
-  margin: 12px;
-  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .header input {
-  font-size: 28px;
-  font-family: 'Upheaval';
+  font-size: 35px;
+  font-family: var(--f4);
   text-align: center;
   width: 100%;
+  color: var(--orange1);
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
 }

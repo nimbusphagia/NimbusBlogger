@@ -1,33 +1,78 @@
 import style from './styles.module.css'
 import type { Block } from "../../types/block"
-
+import { useFetcher, useLoaderData, useParams } from 'react-router-dom'
+import type { User } from '../../types/user'
+import { useEffect, useRef } from 'react'
 
 type Props = {
   block: Block
 }
+
 export function BlockElement({ block }: Props) {
-  //Put an input with the blockid for future editing
+  const user = useLoaderData<User>()
+  const { entryId } = useParams<string>()
+  const fetcher = useFetcher()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      autoResize(textareaRef.current)
+    }
+  }, [block.text])
+
+  function handleBlur(currentValue: string) {
+    if (
+      block.blockType !== 'IMAGE' &&
+      currentValue !== block.text &&
+      entryId
+    ) {
+      fetcher.submit(
+        {
+          intent: 'editBlock',
+          authorId: user.id,
+          entryId,
+          blockId: block.id,
+          text: currentValue,
+        },
+        { method: 'post' }
+      )
+    }
+  }
+
+  function autoResize(el: HTMLTextAreaElement) {
+    el.style.height = "auto"
+    el.style.height = el.scrollHeight + "px"
+  }
   return (
-    <>
-      {
-        block.blockType === 'IMAGE' &&
-        <div className={style.imageBlock}>
-          <img src={block.mediaSrc} alt="" />
-        </div>
-      }
-      {
-        block.blockType === 'TEXT' &&
-        <div className={style.textBlock}>
-          <textarea name="text"
-          >{`epic text block: ${block.text}`}</textarea>
-        </div>
-      }
-      {
-        block.blockType === 'HEADING' &&
-        <div className={style.textHeading}>
-          <input type="text" value={block.text} />
-        </div>
-      }
-    </>
+    <div className={style.blockItem}>
+      {block.blockType === 'IMAGE' && (
+        <img src={block.mediaSrc} alt="" />
+      )}
+
+      {block.blockType === 'HEADING' && (
+
+        <textarea
+          rows={1}
+          ref={textareaRef}
+          className={style.blockHeading}
+          name="text"
+          defaultValue={block.text}
+          onBlur={(e) => handleBlur(e.target.value)}
+          onInput={(e) => autoResize(e.currentTarget)}
+        />
+      )}
+
+      {block.blockType === 'TEXT' && (
+        <textarea
+          ref={textareaRef}
+          rows={1}
+          className={style.blockParagraph}
+          name="text"
+          defaultValue={block.text}
+          onBlur={(e) => handleBlur(e.target.value)}
+          onInput={(e) => autoResize(e.currentTarget)}
+        />
+      )}
+    </div>
   )
 }

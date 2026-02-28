@@ -1,6 +1,5 @@
 import { useLoaderData, useOutletContext, useSubmit } from 'react-router-dom'
-import styles from './styles.module.css'
-import { useState } from 'react';
+import styles from './styles.module.css';
 import type { Entry } from '../../types/entry';
 import type { User } from '../../types/user';
 import type { Block } from '../../types/block';
@@ -13,29 +12,33 @@ export function Editor() {
   const blocks: Block[] = entry.blocks;
   const submit = useSubmit();
 
-  const [title, setTitle] = useState(entry.title);
-
   return (
     <div className={styles.body}>
-      <header className={styles.header}>
-        <input
-          type="text"
-          name='title'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          onBlur={() => submit({
-            intent: 'editTitle',
-            authorId: user.id,
-            title
-          }, { method: 'post' })}
-        />
-      </header>
-      <main className={styles.canvas}>
-        {blocks.map((block) => (
-          <BlockElement key={block.id} block={block} />
-        ))}
-        <BlocksInit />
-      </main>
+      <div className={styles.editor}>
+        <header className={styles.header}>
+          <input
+            type="text"
+            name='title'
+            defaultValue={entry.title}
+            onBlur={(e) => {
+              if (e.target.value !== entry.title) {
+                submit({
+                  intent: 'editTitle',
+                  authorId: user.id,
+                  title: e.target.value
+                }, { method: 'post' })
+              }
+            }
+            }
+          />
+        </header>
+        <main className={styles.blocks}>
+          {blocks.map((block) => (
+            <BlockElement key={block.id} block={block} />
+          ))}
+          <BlocksInit />
+        </main>
+      </div>
     </div>
   )
 }

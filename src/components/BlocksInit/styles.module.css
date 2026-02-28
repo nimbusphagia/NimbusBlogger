@@ -1,5 +1,5 @@
 .form {
-  margin: auto;
+  margin: 20px auto;
   width: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -10,13 +10,17 @@
 .button {
   height: 100%;
   width: 100%;
-  padding: 15px 10px;
-  background-color: rgb(255, 255, 255, 0.01);
+  padding: 12px 10px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 3px, rgba(0, 0, 0, 0.14) 0px 1px 2px;
   border-radius: 3px;
-  font-size: 25px;
+  font-size: 20px;
+  font-family: var(--f4);
+  color: var(--purple1);
+  background-color: rgb(255, 255, 255, 0.005);
+  opacity: 0.85;
 }
 
 .button:hover {
-  background-color: rgb(255, 255, 255, 0.005);
+  background-color: rgb(255, 255, 255, 0.02);
+  opacity: 1;
 }

@@ -2,7 +2,7 @@ import type { Entry } from "../../types/entry";
 import { apiClient } from "../../api/client";
 import { redirect, type ActionFunctionArgs } from "react-router-dom";
 import type { Block } from "../../types/block";
-type Intent = "editTitle" | "createBlock";
+type Intent = "editTitle" | "createBlock" | "editBlock";
 
 type EntryInfo = {
   authorId: string,
@@ -52,6 +52,21 @@ async function createBlock(blockType: string, { authorId, entryId }: EntryInfo) 
   );
   return redirect(`/entries/${block.entryId}`);
 }
+async function editBlock(
+  text: string,
+  blockId: string,
+  { authorId, entryId }: EntryInfo
+) {
+  await apiClient(
+    `/users/${authorId}/entries/${entryId}/blocks/${blockId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ text }),
+    }
+  );
+
+  return null;
+}
 export async function editorAction({ request, params }: ActionFunctionArgs) {
   try {
     const { formData, entryInfo } = await getEntryInfo(request, params);
@@ -66,6 +81,12 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
       case "createBlock": {
         const blockType = getString(formData, "blockType");
         return await createBlock(blockType, entryInfo);
+      }
+
+      case "editBlock": {
+        const text = getString(formData, "text");
+        const blockId = getString(formData, "blockId");
+        return await editBlock(text, blockId, entryInfo);
       }
 
       default:
