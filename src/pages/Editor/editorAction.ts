@@ -1,14 +1,17 @@
 import type { Entry } from "../../types/entry";
 import { apiClient } from "../../api/client";
 import { redirect, type ActionFunctionArgs } from "react-router-dom";
-import type { Block } from "../../types/block";
+import type { Block, BlockType } from "../../types/block";
 type Intent = "editTitle" | "createBlock" | "editBlock" | "deleteBlock";
 
 type EntryInfo = {
   authorId: string,
   entryId: string,
 }
-
+type BlockInfo = {
+  blockType: BlockType,
+  index: number,
+}
 function getString(formData: FormData, key: string): string {
   const value = formData.get(key);
   if (typeof value !== "string") {
@@ -16,6 +19,7 @@ function getString(formData: FormData, key: string): string {
   }
   return value;
 }
+
 async function getEntryInfo(
   request: Request,
   params: ActionFunctionArgs["params"]
@@ -42,15 +46,15 @@ async function editTitle(title: string, { authorId, entryId }: EntryInfo) {
   );
   return redirect(`/entries/${entry.id}`);
 }
-async function createBlock(blockType: string, { authorId, entryId }: EntryInfo) {
-  const block = await apiClient<Block>(
+async function createBlock({ blockType, index }: BlockInfo, { authorId, entryId }: EntryInfo) {
+  await apiClient<Block>(
     `/users/${authorId}/entries/${entryId}/blocks`,
     {
       method: "POST",
-      body: JSON.stringify({ blockType }),
+      body: JSON.stringify({ blockType, index }),
     }
   );
-  return redirect(`/entries/${block.entryId}`);
+  return null;
 }
 async function deleteBlock(blockId: string, { authorId, entryId }: EntryInfo) {
   await apiClient(
@@ -90,8 +94,9 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
       }
 
       case "createBlock": {
-        const blockType = getString(formData, "blockType");
-        return await createBlock(blockType, entryInfo);
+        const blockType = getString(formData, "blockType") as BlockType;
+        const index = Number(getString(formData, "index"));
+        return await createBlock({ blockType, index }, entryInfo);
       }
 
       case "editBlock": {

@@ -81,6 +81,7 @@ export function BlockElement({ block }: Props) {
             ref={textareaRef}
             className={style.blockHeading}
             name="text"
+            id={`index-${block.index}`}
             defaultValue={block.text}
             onBlur={(e) => handleBlur(e.target.value)}
             onInput={(e) => autoResize(e.currentTarget)}
@@ -91,6 +92,7 @@ export function BlockElement({ block }: Props) {
       {block.blockType === 'TEXT' && (
         <div className={style.blockItem}>
           <textarea
+            id={`index-${block.index}`}
             ref={textareaRef}
             rows={1}
             className={style.blockParagraph}

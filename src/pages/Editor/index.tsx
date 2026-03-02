@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext, useSubmit } from 'react-router-dom'
+import { useFetcher, useLoaderData, useOutletContext } from 'react-router-dom'
 import styles from './styles.module.css';
 import type { Entry } from '../../types/entry';
 import type { User } from '../../types/user';
@@ -10,7 +10,7 @@ export function Editor() {
   const user = useOutletContext<User>();
   const entry = useLoaderData<Entry>();
   const blocks: Block[] = entry.blocks;
-  const submit = useSubmit();
+  const fetcher = useFetcher();
 
   return (
     <div className={styles.body}>
@@ -22,7 +22,7 @@ export function Editor() {
             defaultValue={entry.title}
             onBlur={(e) => {
               if (e.target.value !== entry.title) {
-                submit({
+                fetcher.submit({
                   intent: 'editTitle',
                   authorId: user.id,
                   title: e.target.value
@@ -36,7 +36,7 @@ export function Editor() {
           {blocks.map((block) => (
             <BlockElement key={block.id} block={block} />
           ))}
-          <BlocksInit />
+          <BlocksInit count={blocks.length} />
         </main>
       </div>
     </div>
