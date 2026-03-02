@@ -21,58 +21,86 @@ export function BlockElement({ block }: Props) {
   }, [block.text])
 
   function handleBlur(currentValue: string) {
-    if (
-      block.blockType !== 'IMAGE' &&
-      currentValue !== block.text &&
-      entryId
-    ) {
+    if (!entryId) return;
+
+    const isImage = block.blockType === 'IMAGE';
+    const previousValue = isImage ? block.mediaSrc : block.text;
+    if (currentValue.trim() === '') {
+      fetcher.submit({
+        intent: 'deleteBlock',
+        authorId: user.id,
+        entryId,
+        blockId: block.id,
+      },
+        { method: 'post' }
+      );
+      return;
+    };
+    if (currentValue !== previousValue) {
       fetcher.submit(
         {
           intent: 'editBlock',
           authorId: user.id,
           entryId,
           blockId: block.id,
-          text: currentValue,
+          ...(isImage
+            ? { mediaSrc: currentValue }
+            : { text: currentValue }),
         },
         { method: 'post' }
-      )
-    }
+      );
+    };
   }
-
   function autoResize(el: HTMLTextAreaElement) {
     el.style.height = "auto"
     el.style.height = el.scrollHeight + "px"
   }
   return (
-    <div className={style.blockItem}>
+    <>
       {block.blockType === 'IMAGE' && (
-        <img src={block.mediaSrc} alt="" />
+        <div className={`${style.blockItem} ${style.blockImg}`}>
+          {block.mediaSrc &&
+            <img
+              className={style.img}
+              src={block.mediaSrc} alt="" />}
+          <input
+            className={style.imgInput}
+            type="url"
+            placeholder='Insert image url'
+            defaultValue={block.mediaSrc}
+            onBlur={(e) => handleBlur(e.target.value)}
+          />
+        </div>
       )}
 
       {block.blockType === 'HEADING' && (
 
-        <textarea
-          rows={1}
-          ref={textareaRef}
-          className={style.blockHeading}
-          name="text"
-          defaultValue={block.text}
-          onBlur={(e) => handleBlur(e.target.value)}
-          onInput={(e) => autoResize(e.currentTarget)}
-        />
+        <div className={style.blockItem}>
+          <textarea
+            rows={1}
+            ref={textareaRef}
+            className={style.blockHeading}
+            name="text"
+            defaultValue={block.text}
+            onBlur={(e) => handleBlur(e.target.value)}
+            onInput={(e) => autoResize(e.currentTarget)}
+          />
+        </div>
       )}
 
       {block.blockType === 'TEXT' && (
-        <textarea
-          ref={textareaRef}
-          rows={1}
-          className={style.blockParagraph}
-          name="text"
-          defaultValue={block.text}
-          onBlur={(e) => handleBlur(e.target.value)}
-          onInput={(e) => autoResize(e.currentTarget)}
-        />
+        <div className={style.blockItem}>
+          <textarea
+            ref={textareaRef}
+            rows={1}
+            className={style.blockParagraph}
+            name="text"
+            defaultValue={block.text}
+            onBlur={(e) => handleBlur(e.target.value)}
+            onInput={(e) => autoResize(e.currentTarget)}
+          />
+        </div>
       )}
-    </div>
+    </>
   )
 }

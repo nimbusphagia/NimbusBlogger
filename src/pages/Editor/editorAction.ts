@@ -2,7 +2,7 @@ import type { Entry } from "../../types/entry";
 import { apiClient } from "../../api/client";
 import { redirect, type ActionFunctionArgs } from "react-router-dom";
 import type { Block } from "../../types/block";
-type Intent = "editTitle" | "createBlock" | "editBlock";
+type Intent = "editTitle" | "createBlock" | "editBlock" | "deleteBlock";
 
 type EntryInfo = {
   authorId: string,
@@ -52,8 +52,19 @@ async function createBlock(blockType: string, { authorId, entryId }: EntryInfo) 
   );
   return redirect(`/entries/${block.entryId}`);
 }
+async function deleteBlock(blockId: string, { authorId, entryId }: EntryInfo) {
+  await apiClient(
+    `/users/${authorId}/entries/${entryId}/blocks/${blockId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  return null;
+
+}
 async function editBlock(
-  text: string,
+  data: { text?: string; mediaSrc?: string },
   blockId: string,
   { authorId, entryId }: EntryInfo
 ) {
@@ -61,7 +72,7 @@ async function editBlock(
     `/users/${authorId}/entries/${entryId}/blocks/${blockId}`,
     {
       method: "PATCH",
-      body: JSON.stringify({ text }),
+      body: JSON.stringify(data),
     }
   );
 
@@ -84,11 +95,25 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
       }
 
       case "editBlock": {
-        const text = getString(formData, "text");
         const blockId = getString(formData, "blockId");
-        return await editBlock(text, blockId, entryInfo);
+
+        const text = formData.get("text");
+        const mediaSrc = formData.get("mediaSrc");
+
+        return await editBlock(
+          {
+            ...(typeof text === "string" && { text }),
+            ...(typeof mediaSrc === "string" && { mediaSrc }),
+          },
+          blockId,
+          entryInfo
+        );
       }
 
+      case "deleteBlock": {
+        const blockId = getString(formData, "blockId");
+        return await deleteBlock(blockId, entryInfo);
+      }
       default:
         return redirect("/entries");
     }
