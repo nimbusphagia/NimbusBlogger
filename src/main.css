@@ -1,21 +1,45 @@
 @font-face {
   font-family: 'Upheaval';
-  src: url('./assets/fonts/upheavtt.woff2'), format('woff2');
+  src: url('./assets/fonts/upheavtt.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Bitmap';
-  src: url('./assets/fonts/Bitmap.woff2'), format('woff2');
+  src: url('./assets/fonts/Bitmap.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Calive';
-  src: url('./assets/fonts/CalivepixelRegularDemo.woff2'), format('woff2');
+  src: url('./assets/fonts/CalivepixelRegularDemo.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Vorline';
-  src: url('./assets/fonts/VorlinepixelRegularDemo.woff2'), format('woff2');
+  src: url('./assets/fonts/VorlinepixelRegularDemo.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dico';
+  src: url('./assets/fonts/dico/Dico.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari';
+  src: url('./assets/fonts/ari-w9500-woff2/ari-w9500-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari';
+  src: url('./assets/fonts/ari-w9500-woff2/ari-w9500-display.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
 }
 
 body {

@@ -10,6 +10,7 @@
   border-radius: 5px;
   padding: 20px 10px;
   height: 100%;
+  color: var(--fg1);
 }
 
 .header {
@@ -21,10 +22,12 @@
 
 .header input {
   font-size: 35px;
-  font-family: var(--f4);
+  font-family: 'Dico';
+  font-weight: 900;
   text-align: center;
   width: 100%;
-  color: var(--orange1);
+  text-decoration: underline 1.9px;
+  text-underline-offset: 8px;
 }
 
 .blocks {
