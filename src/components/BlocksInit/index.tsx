@@ -1,17 +1,17 @@
-import { useOutletContext, useSubmit } from "react-router-dom"
+import { useFetcher, useOutletContext } from "react-router-dom"
 import style from "./styles.module.css"
 import type { User } from "../../types/user";
 
 type BlocksInitProps = {
-  count: number
+  count: number,
+  fetcher: ReturnType<typeof useFetcher>
 }
 
-export function BlocksInit({ count }: BlocksInitProps) {
+export function BlocksInit({ count, fetcher }: BlocksInitProps) {
   const user = useOutletContext<User>();
-  const submit = useSubmit();
 
   const createBlock = (blockType: string) => {
-    submit(
+    fetcher.submit(
       {
         intent: 'createBlock',
         authorId: user.id,

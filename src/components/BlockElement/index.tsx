@@ -5,20 +5,31 @@ import type { User } from '../../types/user'
 import { useEffect, useRef } from 'react'
 
 type Props = {
-  block: Block
+  block: Block,
+  autoFocus: boolean
 }
 
-export function BlockElement({ block }: Props) {
+export function BlockElement({ block, autoFocus }: Props) {
   const user = useLoaderData<User>()
   const { entryId } = useParams<string>()
   const fetcher = useFetcher()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-
+  const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (textareaRef.current) {
       autoResize(textareaRef.current)
     }
-  }, [block.text])
+  }, [block.text]);
+
+  useEffect(() => {
+    if (!autoFocus) return;
+
+    if (block.blockType === "IMAGE") {
+      inputRef.current?.focus();
+    } else {
+      textareaRef.current?.focus();
+    }
+  }, [autoFocus]);
 
   function handleBlur(currentValue: string) {
     if (!entryId) return;
@@ -65,10 +76,12 @@ export function BlockElement({ block }: Props) {
               src={block.mediaSrc} alt="" />}
           <input
             className={style.imgInput}
+            ref={inputRef}
             type="url"
             placeholder='Insert image url'
             defaultValue={block.mediaSrc}
             onBlur={(e) => handleBlur(e.target.value)}
+            autoComplete='off'
           />
         </div>
       )}
@@ -85,6 +98,7 @@ export function BlockElement({ block }: Props) {
             defaultValue={block.text}
             onBlur={(e) => handleBlur(e.target.value)}
             onInput={(e) => autoResize(e.currentTarget)}
+            autoComplete='off'
           />
         </div>
       )}
@@ -92,7 +106,6 @@ export function BlockElement({ block }: Props) {
       {block.blockType === 'TEXT' && (
         <div className={style.blockItem}>
           <textarea
-            id={`index-${block.index}`}
             ref={textareaRef}
             rows={1}
             className={style.blockParagraph}
@@ -100,6 +113,7 @@ export function BlockElement({ block }: Props) {
             defaultValue={block.text}
             onBlur={(e) => handleBlur(e.target.value)}
             onInput={(e) => autoResize(e.currentTarget)}
+            autoComplete='off'
           />
         </div>
       )}
