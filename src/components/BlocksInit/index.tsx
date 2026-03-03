@@ -24,15 +24,16 @@ export function BlocksInit({ count, fetcher }: BlocksInitProps) {
 
   return (
     <div className={style.form}>
+      <button type="button" onClick={() => createBlock("HEADING")} className={style.button}>
+        Head
+      </button>
       <button type="button" onClick={() => createBlock("TEXT")} className={style.button}>
-        Txt
+        Text
       </button>
       <button type="button" onClick={() => createBlock("IMAGE")} className={style.button}>
-        Img
+        Image
       </button>
-      <button type="button" onClick={() => createBlock("HEADING")} className={style.button}>
-        Hh
-      </button>
+
     </div>
   )
 }

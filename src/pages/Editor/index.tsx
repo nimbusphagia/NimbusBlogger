@@ -1,4 +1,4 @@
-import { useFetcher, useLoaderData, useOutletContext, useRevalidator } from 'react-router-dom'
+import { useFetcher, useSubmit, useLoaderData, useOutletContext, useRevalidator } from 'react-router-dom'
 import styles from './styles.module.css';
 import type { Entry } from '../../types/entry';
 import type { User } from '../../types/user';
@@ -14,7 +14,9 @@ export function Editor() {
   const blocks: Block[] = entry.blocks;
   const fetcher = useFetcher<EditorActionResult>();
   const revalidator = useRevalidator();
+  const submit = useSubmit();
   const [newBlockId, setNewBlockId] = useState<string | null>(null);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     if (fetcher.state !== "idle") return;
@@ -25,6 +27,7 @@ export function Editor() {
       revalidator.revalidate();
     }
   }, [fetcher.state]);
+
   return (
     <div className={styles.body}>
       <div className={styles.editor}>
@@ -44,6 +47,7 @@ export function Editor() {
             }
             }
           />
+
         </header>
         <main className={styles.blocks}>
           {blocks.map((block) => {
@@ -57,8 +61,45 @@ export function Editor() {
           <BlocksInit
             count={blocks.length}
             fetcher={fetcher} />
+
+          <button
+            className={styles.delBtn}
+            type="button"
+            onClick={() => setShowConfirm(true)}
+          >
+            Delete Entry
+          </button>
+
         </main>
       </div>
+      {showConfirm && (
+        <div className={styles.veil}>
+          <div className={styles.confirmDelete}>
+            <p>Are you sure?</p>
+            <div className={styles.confirmButtons}>
+              <button
+                type="button"
+                onClick={() => {
+                  submit(
+                    {
+                      intent: 'deleteEntry',
+                      entryId: entry.id,
+                      authorId: user.id,
+                    },
+                    { method: 'post' }
+                  );
+                }}
+              >
+                Yes
+              </button>
+              <button onClick={() => setShowConfirm(false)}>
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+
   )
 }

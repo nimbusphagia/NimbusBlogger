@@ -1,12 +1,12 @@
 .body {
   background-color: var(--bg0_h);
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 15px;
+  position: relative;
 }
 
 .editor {
   box-sizing: border-box;
-  background-color: rgb(255, 255, 255, 0.008);
   border-radius: 5px;
   padding: 20px 10px;
   height: 100%;
@@ -14,6 +14,7 @@
 }
 
 .header {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,4 +34,74 @@
 .blocks {
   display: flex;
   flex-direction: column;
+}
+
+.veil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255, 0.03);
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+  z-index: 9;
+}
+
+.confirmDelete {
+  position: relative;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 18px 40px;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg0_h);
+  box-shadow: 5px 5px 2px black;
+  color: var(--yellow2);
+  font-family: var(--f4);
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 20px;
+}
+
+.confirmDelete p {
+  font-family: var(--f4);
+  overflow-wrap: anywhere;
+}
+
+.confirmButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.confirmButtons button {
+  font-size: 20px;
+  opacity: 0.9;
+  transition: color ease-in 0.2s;
+}
+
+.confirmButtons button:hover {
+  color: var(--purple2);
+  opacity: 1;
+}
+
+.delBtn {
+  font-family: var(--f2);
+  font-size: 20px;
+  font-weight: 900;
+  color: red;
+  opacity: 0.2;
+  width: fit-content;
+  margin: auto;
+  margin-top: 40px;
+  transition: opacity ease-in 0.2s;
+}
+
+.delBtn:hover {
+  opacity: 1;
 }

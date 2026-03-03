@@ -8,8 +8,8 @@ export default function RootLayout() {
   const user = useLoaderData() as User;
   return (
     <div className={styles.bodyRoot}>
-      <Outlet context={user} />
       <Sidebar />
+      <Outlet context={user} />
     </div >
   )
 }

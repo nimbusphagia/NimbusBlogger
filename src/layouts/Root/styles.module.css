@@ -1,9 +1,9 @@
 .bodyRoot {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
   min-height: calc(100vh - 24px);
-  margin: 12px;
-  gap: 15px;
+  margin: 25px 25px;
+  gap: 17px;
 }

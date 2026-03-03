@@ -15,9 +15,8 @@ export async function apiClient<T>(
     },
   });
   if (!res.ok) {
-    throw new Error(`API error: ${res.status}`);
+    throw res;
   }
-
   return res.json() as Promise<T>;
 }
 

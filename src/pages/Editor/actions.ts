@@ -1,5 +1,5 @@
 import { apiClient } from "../../api/client";
-import type { ActionFunctionArgs } from "react-router-dom";
+import { redirect, type ActionFunctionArgs } from "react-router-dom";
 import type { Entry } from "../../types/entry";
 import type { Block, BlockType } from "../../types/block";
 import { getString } from "../../lib";
@@ -87,4 +87,17 @@ export async function editBlock(
   );
 
   return { type: 'editBlock', blockId };
+}
+export async function deleteEntry(
+  { authorId, entryId }: EntryInfo
+) {
+  console.log("Deleting entry...");
+
+  await apiClient(
+    `/users/${authorId}/entries/${entryId}`,
+    { method: 'DELETE' }
+  );
+
+  console.log("Returning redirect...");
+  return redirect("/entries");
 }

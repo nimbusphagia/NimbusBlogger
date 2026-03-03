@@ -60,15 +60,16 @@ body {
   --red2: #cc241d;
   --green1: #b8bb26;
   --blue1: #83a598;
-  --blue2: #458588;
+  --blue2: #036595;
   --aqua1: #8ec07c;
   --orange1: #fe8019;
   --purple1: #d3869b;
-  --purple2: #b16286;
-  --yellow1: #fabd2f;
+  --purple2: #f02e6e;
+  --yellow1: #fdb353;
+  --yellow2: #eca961;
   margin: 0;
   padding: 0;
-  font-family: 'Upheaval';
+  font-family: 'Dico';
   background-color: var(--bg0);
   color: var(--fg2);
 }

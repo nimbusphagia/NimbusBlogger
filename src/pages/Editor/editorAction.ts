@@ -1,9 +1,9 @@
 import { type ActionFunctionArgs } from "react-router-dom";
 import type { BlockType } from "../../types/block";
 import { getString } from "../../lib";
-import { editTitle, createBlock, editBlock, deleteBlock, getEntryInfo } from './actions'
+import { editTitle, createBlock, editBlock, deleteBlock, getEntryInfo, deleteEntry } from './actions'
 
-type Intent = "editTitle" | "createBlock" | "editBlock" | "deleteBlock";
+type Intent = "editTitle" | "deleteEntry" | "createBlock" | "editBlock" | "deleteBlock";
 
 export async function editorAction({ request, params }: ActionFunctionArgs) {
   try {
@@ -46,6 +46,9 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
         const blockId = getString(formData, "blockId");
         return await deleteBlock(blockId, entryInfo);
       }
+      case "deleteEntry": {
+        return await deleteEntry(entryInfo);
+      }
       default:
         return {
           type: 'error',
@@ -53,6 +56,10 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
         };
     }
   } catch (error) {
+    if (error instanceof Response) {
+      throw error;
+    }
+
     return {
       type: "error" as const,
       message: "Server error",
