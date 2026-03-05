@@ -25,16 +25,7 @@ export default function Sidebar() {
 
       <div className={styles.item}>
         <NavLink
-          to="/posts"
-          className={({ isActive }) => isActive ? styles.current : ""}
-        >
-          Posts
-        </NavLink>
-      </div>
-
-      <div className={styles.item}>
-        <NavLink
-          to="/profile"
+          to="/author"
           className={({ isActive }) => isActive ? styles.current : ""}
         >
           Author

@@ -1,14 +1,13 @@
-import { useOutletContext } from "react-router-dom";
-import type { User } from "../../types/user";
+import { useLoaderData } from "react-router-dom";
 import styles from "./styles.module.css";
 import { Stat } from "../../components/Stat";
 
 export function Dashboard() {
-  const user = useOutletContext() as User;
+  const { author, published, drafts } = useLoaderData();
   return (
     <div className={styles.body}>
       <header className={styles.header}>
-        <h1>Nimbus Blogger</h1>
+        <h1>{author.name}'s blog</h1>
       </header>
       <main className={styles.main}>
         <div className={styles.entries}>
@@ -16,15 +15,11 @@ export function Dashboard() {
         <div className={styles.statistics}>
           <Stat
             name='Published'
-            quantity={3}
+            quantity={published}
           />
           <Stat
             name='Drafts'
-            quantity={1}
-          />
-          <Stat
-            name='Total Comments'
-            quantity={15}
+            quantity={drafts}
           />
         </div>
       </main>

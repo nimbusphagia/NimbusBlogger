@@ -12,6 +12,8 @@ import { entriesLoader } from "../pages/Entries/loader";
 import { Entries } from "../pages/Entries";
 import { editorAction } from "../pages/Editor/editorAction";
 import { entriesAction } from "../pages/Entries/action";
+import { Author } from "../pages/Author";
+import { authorLoader } from "../pages/Author/loader";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +44,11 @@ export const router = createBrowserRouter([
             action: editorAction,
           },
         ]
+      },
+      {
+        path: 'author',
+        Component: Author,
+        loader: authorLoader,
       }
     ],
   },
