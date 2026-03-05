@@ -47,30 +47,27 @@ body {
   --f2: 'Upheaval';
   --f3: 'Vorline';
   --f4: 'Bitmap';
-  --bg0_h: #1d2021;
+  /* NEW COLORS*/
   --bg0: #282828;
-  --bg0_s: #32302f;
-  --bg1: #3c3836;
-  --fg0: #fbf1c7;
-  --fg1: #ebdbb2;
-  --fg2: #d5c4a1;
-  --fg3: #bdae93;
-  --fg4: #a89984;
-  --red1: #fb4934;
-  --red2: #cc241d;
-  --green1: #b8bb26;
-  --blue1: #83a598;
-  --blue2: #036595;
-  --aqua1: #8ec07c;
-  --orange1: #fe8019;
-  --purple1: #d3869b;
-  --purple2: #f02e6e;
-  --yellow1: #fdb353;
-  --yellow2: #eca961;
+  --bgLight: #bfb2b2;
+  --dark: #1d2021;
+  --yellow0: #d5c4a1;
+  --yellow1: #f9b45b;
+  --blue0: #313948;
+  --blue1: #36495d;
+  --blue2: #3399b9;
+  --green1: #49a46c;
+  --green2: #1da853;
+  --pink0: #d3869b;
+  --pink1: #ec639d;
+  --red0: #d70f5a;
+  --red1: #e80c35;
+  --orange0: #fbae7f;
+  --orange1: #f45b54;
   margin: 0;
   padding: 0;
   font-family: 'Dico';
-  background-color: var(--bg0);
+  background-color: var(--bgLight);
   color: var(--fg2);
 }
 
@@ -89,6 +86,10 @@ ul {
   text-decoration: none;
   margin: 0;
   padding: 0;
+}
+
+a {
+  display: block;
 }
 
 button {

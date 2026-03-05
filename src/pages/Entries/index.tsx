@@ -25,12 +25,12 @@ export function Entries() {
           return (
             <div className={style.entry} key={e.id}>
               <div className={style.entryInfo}>
-                <p>{e.title}</p>
-              </div>
-              <div className={style.actions}>
                 <NavLink
                   to={e.id}
-                  className={style.editBtn}>Edit</NavLink>
+                  className={style.editBtn}>{e.title}</NavLink>
+              </div>
+              <div className={style.actions}>
+
                 <fetcher.Form method="post" className={style.hiddenForm}>
                   <input type="hidden" name="intent" value="delete" />
                   <input type="hidden" name="entryId" value={e.id} />

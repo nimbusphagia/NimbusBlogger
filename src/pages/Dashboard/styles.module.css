@@ -1,11 +1,18 @@
 .body {
-  font-family: 'Upheaval';
+  font-family: var(--f4);
   padding: 10px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .header h1 {
-  font-size: 20px;
+  font-family: 'Dico';
+  font-size: 45px;
+  font-weight: bolder;
+  color: var(--blue1);
+  text-decoration: underline 5px;
 }
 
 .main {}

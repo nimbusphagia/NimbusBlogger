@@ -1,31 +1,45 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from './styles.module.css'
 
 export default function Sidebar() {
-  const location = useLocation();
-  const currentRoute = location.pathname;
-
   return (
     <aside className={styles.aside}>
-      <div
-        className={`${styles.item} ${currentRoute === '/' ? styles.current : ''}`}
-      >
-        <NavLink to='/'>Overview</NavLink>
+      <div className={styles.item}>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => isActive ? styles.current : ""}
+        >
+          Overview
+        </NavLink>
       </div>
-      <div
-        className={`${styles.item} ${currentRoute === '/entries' ? styles.current : ''}`}
-      >
-        <NavLink to='/entries'>Entries</NavLink>
+
+      <div className={styles.item}>
+        <NavLink
+          to="/entries"
+          className={({ isActive }) => isActive ? styles.current : ""}
+        >
+          Entries
+        </NavLink>
       </div>
-      <div
-        className={`${styles.item} ${currentRoute === '/moderation' ? styles.current : ''}`}
-      >
-        <NavLink to='/posts'>Posts</NavLink>
+
+      <div className={styles.item}>
+        <NavLink
+          to="/posts"
+          className={({ isActive }) => isActive ? styles.current : ""}
+        >
+          Posts
+        </NavLink>
       </div>
-      <div className={`${styles.item} ${currentRoute === '/profile' ? styles.current : ''}`}>
-        <NavLink to='/profile'>Author</NavLink>
+
+      <div className={styles.item}>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => isActive ? styles.current : ""}
+        >
+          Author
+        </NavLink>
       </div>
     </aside>
   )
 }
-

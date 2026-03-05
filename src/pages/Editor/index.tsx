@@ -30,6 +30,7 @@ export function Editor() {
 
   return (
     <div className={styles.body}>
+
       <div className={styles.editor}>
         <header className={styles.header}>
           <input
@@ -62,13 +63,6 @@ export function Editor() {
             count={blocks.length}
             fetcher={fetcher} />
 
-          <button
-            className={styles.delBtn}
-            type="button"
-            onClick={() => setShowConfirm(true)}
-          >
-            Delete Entry
-          </button>
 
         </main>
       </div>
@@ -99,7 +93,19 @@ export function Editor() {
           </div>
         </div>
       )}
-    </div>
+      <div className={styles.utilBtns}>
+        <button
+          className={styles.delBtn}
+          type="button"
+          onClick={() => setShowConfirm(true)}
+        >
+          Delete
+        </button>
+        <button
+          className={styles.publishBtn}
+        >Publish</button>
 
+      </div>
+    </div>
   )
 }

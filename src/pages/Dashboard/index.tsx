@@ -8,7 +8,7 @@ export function Dashboard() {
   return (
     <div className={styles.body}>
       <header className={styles.header}>
-        <h1>{user.email}'s blog</h1>
+        <h1>Nimbus Blogger</h1>
       </header>
       <main className={styles.main}>
         <div className={styles.entries}>

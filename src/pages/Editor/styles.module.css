@@ -1,16 +1,58 @@
 .body {
-  background-color: var(--bg0_h);
-  border-radius: 5px;
-  padding: 15px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.delBtn,
+.publishBtn,
+.editor {
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background-color: var(--blue1);
+}
+
+.utilBtns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--f4);
+}
+
+.delBtn,
+.publishBtn {
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 900;
+  transition: color ease-in 0.2s;
+}
+
+.delBtn {
+  color: var(--pink0);
+  background-color: var(--red0);
+}
+
+.delBtn:hover {
+  background-color: var(--red1);
+}
+
+.publishBtn {
+  color: var(--yellow0);
+  background-color: var(--green1);
+}
+
+.publishBtn:hover {
+  background-color: var(--green2);
 }
 
 .editor {
   box-sizing: border-box;
-  border-radius: 5px;
   padding: 20px 10px;
   height: 100%;
-  color: var(--fg1);
+  background-color: var(--blue1);
+  color: var(--orange0);
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
 .header {
@@ -18,17 +60,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .header input {
-  font-size: 35px;
+  height: 100%;
+  font-size: 34px;
   font-family: 'Dico';
-  font-weight: 900;
+  font-weight: bold;
   text-align: center;
+  line-height: 1.5;
   width: 100%;
-  text-decoration: underline 1.9px;
-  text-underline-offset: 8px;
+  padding: 8px 0;
+  border: 2.7px dashed transparent;
+  border-radius: 7px;
+}
+
+.header input:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2.7px dashed var(--orange0);
+  background-color: rgb(0, 0, 0, 0.03);
 }
 
 .blocks {
@@ -87,21 +138,5 @@
 
 .confirmButtons button:hover {
   color: var(--purple2);
-  opacity: 1;
-}
-
-.delBtn {
-  font-family: var(--f2);
-  font-size: 20px;
-  font-weight: 900;
-  color: red;
-  opacity: 0.2;
-  width: fit-content;
-  margin: auto;
-  margin-top: 40px;
-  transition: opacity ease-in 0.2s;
-}
-
-.delBtn:hover {
   opacity: 1;
 }

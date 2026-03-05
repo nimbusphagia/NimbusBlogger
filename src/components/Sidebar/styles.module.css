@@ -1,18 +1,17 @@
 .aside {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   padding: 15px 18px;
   gap: 25px;
   align-items: center;
+  justify-content: center;
   height: fit-content;
   min-height: 0;
   min-width: 0;
   max-width: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  background-color: var(--bg0_h);
-  margin-top: 60px;
+  background-color: var(--blue1);
 }
 
 .item {
@@ -20,20 +19,24 @@
   color: var(--yellow1);
   font-size: 18px;
   text-align: center;
-  transition: opacity ease-in 0.1s, transform ease-out 0.1s;
-  opacity: 0.7;
+  text-decoration-color: transparent;
+  text-underline-offset: 0;
+  transition:
+    text-decoration-color ease-in 0.2s,
+    text-underline-offset ease-in 0.2s,
+    color ease-in 0.2s,
+    transform ease-in 0.1s;
 }
 
-.item:hover {
-  transform: scale(1.01);
-  color: var(--yellow2);
-  opacity: 1;
+.item:hover,
+.current {
+  transform: scale(1.05);
 }
 
 .current {
-  transform: scale(1.01);
-  color: var(--yellow2);
-  opacity: 1;
+  color: var(--pink1);
+  text-decoration: underline dotted 4.5px;
+  text-underline-offset: 5px;
 }
 
 .create {

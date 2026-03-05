@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-  margin-top: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background-color: var(--blue1);
 }
 
 .header {
@@ -15,18 +18,22 @@
 
 .header h2 {
   margin: auto;
-  color: var(--blue1);
-  font-size: 28px;
+  color: var(--pink1);
+  font-size: 30px;
+  text-decoration: underline 5px var(--pink1) dotted;
+  text-underline-offset: 5px;
 }
 
 .createBtn {
   font-size: 22px;
-  color: var(--purple1);
+  color: var(--blue2);
   padding: 0;
+  transform: scale(1);
+  transition: transform ease-in 0.3s;
 }
 
 .createBtn:hover {
-  color: var(--purple2);
+  transform: scale(1.05);
 }
 
 .entries {
@@ -44,8 +51,8 @@
   font-size: 16px;
   border-radius: 5px;
   padding: 8px 15px;
-  border: 2.7px dashed var(--fg4);
-  background-color: rgb(255, 255, 255, 0.01);
+  border: 3px dashed var(--dark);
+  color: var(--orange0);
 }
 
 .actions {
@@ -54,24 +61,24 @@
   gap: 20px;
 }
 
-.editBtn,
+.entry,
 .delBtn,
 .createBtn {
-  transition: color ease-in 0.2s;
+  transition: transform ease-in 0.2s, color ease-in 0.2s;
 }
 
-.editBtn:hover {
-  color: var(--yellow2);
+.entry a:hover {
+  color: var(--orange1);
 }
 
-.editBtn,
 .delBtn {
-  color: var(--purple1);
+  color: var(--red0);
   padding: 0;
 }
 
 .delBtn:hover {
-  color: var(--purple2);
+  color: var(--red1);
+  transform: scale(1.02);
 }
 
 .hiddenForm {
