@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_NIMBUS_API_URL
+const BASE_URL = import.meta.env.VITE_NIMBUS_API_URL;
 
 export async function apiClient<T>(
   url: string,
@@ -14,9 +14,15 @@ export async function apiClient<T>(
       ...(options.headers || {}),
     },
   });
+
   if (!res.ok) {
     throw res;
   }
-  return res.json() as Promise<T>;
-}
 
+  if (res.status === 204) {
+    return null as T;
+  }
+
+  const text = await res.text();
+  return text ? (JSON.parse(text) as T) : (null as T);
+}

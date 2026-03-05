@@ -11,6 +11,7 @@ import { editorLoader } from "../pages/Editor/loader";
 import { entriesLoader } from "../pages/Entries/loader";
 import { Entries } from "../pages/Entries";
 import { editorAction } from "../pages/Editor/editorAction";
+import { entriesAction } from "../pages/Entries/action";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     Component: RootLayout,
     loader: authLoader,
+    id: 'root',
     children: [
       {
         index: true,
@@ -31,6 +33,7 @@ export const router = createBrowserRouter([
             index: true,
             Component: Entries,
             loader: entriesLoader,
+            action: entriesAction,
           },
           {
             path: ":entryId",

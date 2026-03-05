@@ -2,7 +2,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 20px 22px;
+  padding: 15px 18px;
   gap: 25px;
   align-items: center;
   height: fit-content;
@@ -12,6 +12,7 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   background-color: var(--bg0_h);
+  margin-top: 60px;
 }
 
 .item {
