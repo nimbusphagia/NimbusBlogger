@@ -55,6 +55,11 @@
   color: var(--orange0);
 }
 
+.entry.published {
+  color: var(--orange1);
+  border-color: var(--orange1);
+}
+
 .actions {
   display: flex;
   align-items: center;

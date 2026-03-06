@@ -7,17 +7,37 @@ export async function entriesAction({ request }: ActionFunctionArgs) {
   const intent = formData.get('intent');
   const userId = formData.get('userId');
   switch (intent) {
-    case 'create': {
+    case "create": {
       const entry = await apiClient<Entry>(`/users/${userId}/entries`, { method: 'POST', });
       return redirect(`/entries/${entry.id}`);
     }
 
-    case 'delete': {
+    case "delete": {
       const entryId = formData.get('entryId');
       await apiClient<Entry>(`/users/${userId}/entries/${entryId}`, { method: 'DELETE', });
       return null;
     }
-
+    case "publish": {
+      const entryId = formData.get('entryId');
+      await apiClient<Entry>(
+        `/users/${userId}/entries/${entryId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          publishedAt: new Date(),
+        })
+      });
+      return null;
+    }
+    case "unpublish": {
+      const entryId = formData.get('entryId');
+      await apiClient<Entry>(
+        `/users/${userId}/entries/${entryId}`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify({ publishedAt: null })
+        });
+      return null;
+    }
     default:
       return null;
   }

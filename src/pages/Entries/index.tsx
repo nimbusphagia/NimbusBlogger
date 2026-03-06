@@ -3,10 +3,37 @@ import { Form, useFetcher, useLoaderData, useRouteLoaderData } from "react-route
 import { NavLink } from 'react-router-dom';
 import type { Entry } from "../../types/entry";
 
+function EntryRow({ entry, userId }: { entry: Entry, userId: string }) {
+  const fetcher = useFetcher();
+  return (
+    <div className={`${style.entry} ${entry.publishedAt ? style.published : ''}`}>
+      <div className={style.entryInfo}>
+        <NavLink to={entry.id} className={style.editBtn}>{entry.title}</NavLink>
+      </div>
+      <div className={style.actions}>
+        <fetcher.Form method="post" className={style.hiddenForm}>
+          <input type="hidden" name="userId" value={userId} />
+          <input type="hidden" name="entryId" value={entry.id} />
+          <button
+            className={entry.publishedAt ? style.unpublishBtn : style.publishBtn}
+            type="submit"
+            name="intent"
+            value={entry.publishedAt ? 'unpublish' : 'publish'}
+          >{entry.publishedAt ? 'Unpublish' : 'Publish'}</button>
+          <button
+            className={style.delBtn}
+            type="submit"
+            name="intent"
+            value="delete"
+          >Del</button>
+        </fetcher.Form>
+      </div>
+    </div>
+  );
+}
 export function Entries() {
   const entries = useLoaderData();
   const user = useRouteLoaderData('root');
-  const fetcher = useFetcher();
 
   return (
     <main className={style.main}>
@@ -21,28 +48,9 @@ export function Entries() {
         </Form>
       </header>
       <div className={style.entries}>
-        {entries.map((e: Entry) => {
-          return (
-            <div className={style.entry} key={e.id}>
-              <div className={style.entryInfo}>
-                <NavLink
-                  to={e.id}
-                  className={style.editBtn}>{e.title}</NavLink>
-              </div>
-              <div className={style.actions}>
-
-                <fetcher.Form method="post" className={style.hiddenForm}>
-                  <input type="hidden" name="intent" value="delete" />
-                  <input type="hidden" name="entryId" value={e.id} />
-                  <button
-                    className={style.delBtn}
-                    type="submit">Del</button>
-                </fetcher.Form>
-              </div>
-            </div>
-          )
-        })}
-
+        {entries.map((e: Entry) => (
+          <EntryRow key={e.id} entry={e} userId={user.id} />
+        ))}
       </div>
     </main>
   )
