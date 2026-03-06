@@ -6,6 +6,7 @@
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   background-color: var(--blue1);
+  padding-bottom: 40px;
 }
 
 .header {
@@ -26,14 +27,16 @@
 
 .createBtn {
   font-size: 22px;
-  color: var(--blue2);
-  padding: 0;
+  color: var(--orange0);
+  border: 2.5px dashed;
+  border-radius: 5px;
+  padding: 5px 20px;
   transform: scale(1);
   transition: transform ease-in 0.3s;
 }
 
 .createBtn:hover {
-  transform: scale(1.05);
+  color: var(--orange1);
 }
 
 .entries {
@@ -73,7 +76,7 @@
 }
 
 .entry a:hover {
-  color: var(--orange1);
+  color: var(--pink1);
 }
 
 .delBtn {
@@ -86,7 +89,19 @@
   transform: scale(1.02);
 }
 
+.main .hiddenForm {
+  margin-left: -80px;
+}
+
 .hiddenForm {
   margin: 0;
   padding: 0;
+}
+
+.publishBtn {
+  color: var(--orange1);
+}
+
+.unpublishBtn {
+  color: var(--orange0);
 }

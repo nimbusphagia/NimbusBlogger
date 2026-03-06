@@ -6,7 +6,7 @@ import type { Block } from '../../types/block';
 import { BlocksInit } from '../../components/BlocksInit';
 import { BlockElement } from '../../components/BlockElement';
 import type { EditorActionResult } from './actions';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function Editor() {
   const user = useOutletContext<User>();
@@ -16,8 +16,19 @@ export function Editor() {
   const revalidator = useRevalidator();
   const submit = useSubmit();
   const [newBlockId, setNewBlockId] = useState<string | null>(null);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
+  const [publishMsg, setPublishMsg] = useState<string | null>(null);
+  const publishMsgRef = useRef<HTMLHeadingElement>(null);
 
+
+  useEffect(() => {
+    if (publishMsg && publishMsgRef.current) {
+      publishMsgRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, [publishMsg]);
   useEffect(() => {
     if (fetcher.state !== "idle") return;
     if (!fetcher.data) return;
@@ -25,6 +36,16 @@ export function Editor() {
     if (fetcher.data.type === "createBlock") {
       setNewBlockId(fetcher.data.blockId);
       revalidator.revalidate();
+    }
+    if (fetcher.data.type === "publishEntry") {
+      const timer = setTimeout(() => setPublishMsg(null), 2000);
+      setPublishMsg('Set to public');
+      return () => clearTimeout(timer);
+    }
+    if (fetcher.data.type === "unpublishEntry") {
+      const timer = setTimeout(() => setPublishMsg(null), 2000);
+      setPublishMsg('Set to private!');
+      return () => clearTimeout(timer);
     }
   }, [fetcher.state]);
 
@@ -72,8 +93,7 @@ export function Editor() {
             <p>Are you sure?</p>
             <div className={styles.confirmButtons}>
               <button
-                type="button"
-                onClick={() => {
+                type="button" onClick={() => {
                   submit(
                     {
                       intent: 'deleteEntry',
@@ -93,6 +113,14 @@ export function Editor() {
           </div>
         </div>
       )}
+      {publishMsg && (
+        <div className={`${styles.publishMsg} ${entry.publishedAt ? styles.public : styles.private}`}>
+          < h1 ref={publishMsgRef}>
+            {publishMsg}
+          </h1>
+        </div>
+      )
+      }
       <div className={styles.utilBtns}>
         <button
           className={styles.delBtn}
@@ -102,10 +130,23 @@ export function Editor() {
           Delete
         </button>
         <button
-          className={styles.publishBtn}
-        >Publish</button>
+          className={`${entry.publishedAt ? styles.unpublishBtn : styles.publishBtn}`}
+          type="button"
+          onClick={() => {
+            fetcher.submit(
+              {
+                intent: `${entry.publishedAt ? 'unpublishEntry' : 'publishEntry'}`,
+                entryId: entry.id,
+                authorId: user.id,
+              },
+              { method: 'post' }
+            );
+          }}
+        >
+          {entry.publishedAt ? 'Unpublish' : 'Publish'}
+        </button>
 
       </div>
-    </div>
+    </div >
   )
 }

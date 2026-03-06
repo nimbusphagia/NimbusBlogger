@@ -16,6 +16,8 @@ export type EditorActionResult =
   | { type: "createBlock"; blockId: string }
   | { type: "editBlock"; blockId: string }
   | { type: "deleteBlock"; blockId: string }
+  | { type: "publishEntry"; entryId: string }
+  | { type: "unpublishEntry"; entryId: string }
   | { type: "editTitle" }
   | { type: "error"; message: string };
 
@@ -91,13 +93,36 @@ export async function editBlock(
 export async function deleteEntry(
   { authorId, entryId }: EntryInfo
 ) {
-  console.log("Deleting entry...");
-
   await apiClient(
     `/users/${authorId}/entries/${entryId}`,
     { method: 'DELETE' }
   );
 
-  console.log("Returning redirect...");
   return redirect("/entries");
+}
+export async function publishEntry(
+  { authorId, entryId }: EntryInfo
+): Promise<EditorActionResult> {
+  await apiClient(
+    `/users/${authorId}/entries/${entryId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ publishedAt: new Date() }),
+    }
+  );
+
+  return { type: 'publishEntry', entryId };
+}
+export async function unpublishEntry(
+  { authorId, entryId }: EntryInfo
+): Promise<EditorActionResult> {
+  await apiClient(
+    `/users/${authorId}/entries/${entryId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ publishedAt: null }),
+    }
+  );
+
+  return { type: 'unpublishEntry', entryId };
 }

@@ -1,9 +1,9 @@
 import { type ActionFunctionArgs } from "react-router-dom";
 import type { BlockType } from "../../types/block";
 import { getString } from "../../lib";
-import { editTitle, createBlock, editBlock, deleteBlock, getEntryInfo, deleteEntry } from './actions'
+import { editTitle, createBlock, editBlock, deleteBlock, getEntryInfo, deleteEntry, publishEntry, unpublishEntry } from './actions'
 
-type Intent = "editTitle" | "deleteEntry" | "createBlock" | "editBlock" | "deleteBlock";
+type Intent = "editTitle" | "publishEntry" | "unpublishEntry" | "deleteEntry" | "createBlock" | "editBlock" | "deleteBlock";
 
 export async function editorAction({ request, params }: ActionFunctionArgs) {
   try {
@@ -48,6 +48,12 @@ export async function editorAction({ request, params }: ActionFunctionArgs) {
       }
       case "deleteEntry": {
         return await deleteEntry(entryInfo);
+      }
+      case "publishEntry": {
+        return await publishEntry(entryInfo);
+      }
+      case "unpublishEntry": {
+        return await unpublishEntry(entryInfo);
       }
       default:
         return {

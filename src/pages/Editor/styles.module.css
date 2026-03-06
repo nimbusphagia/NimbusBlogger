@@ -2,10 +2,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 98%;
+  margin: 0 auto;
 }
 
 .delBtn,
 .publishBtn,
+.unpublishBtn,
+.publishMsg,
 .editor {
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -20,7 +24,8 @@
 }
 
 .delBtn,
-.publishBtn {
+.publishBtn,
+.unpublishBtn {
   padding: 10px 15px;
   font-size: 20px;
   font-weight: 900;
@@ -45,9 +50,19 @@
   background-color: var(--green2);
 }
 
+.unpublishBtn {
+  color: var(--yellow0);
+  background-color: var(--blue2);
+  transition: background-color ease-in 0.1s;
+}
+
+.unpublishBtn:hover {
+  color: var(--orange0);
+}
+
 .editor {
   box-sizing: border-box;
-  padding: 20px 10px;
+  padding: 20px 15px;
   height: 100%;
   background-color: var(--blue1);
   color: var(--orange0);
@@ -70,7 +85,7 @@
   text-align: center;
   line-height: 1.5;
   width: 100%;
-  padding: 8px 0;
+  padding: 4px 0;
   border: 2.7px dashed transparent;
   border-radius: 7px;
 }
@@ -139,4 +154,46 @@
 .confirmButtons button:hover {
   color: var(--purple2);
   opacity: 1;
+}
+
+.publishMsg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 150%);
+  padding: 15px;
+  font-family: var(--f4);
+  font-size: 12px;
+  text-align: center;
+  width: 200px;
+  animation: fadeOut 2s forwards;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  opacity: 0.9;
+  box-shadow: none;
+  border-radius: 15px;
+  line-height: 1.5;
+  border: 4px dashed;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.public {
+  color: var(--yellow0);
+}
+
+.private {
+  color: var(--yellow0);
 }

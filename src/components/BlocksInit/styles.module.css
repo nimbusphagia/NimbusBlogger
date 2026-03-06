@@ -1,6 +1,5 @@
 .form {
-  margin: auto;
-  margin-top: 20px;
+  margin: 20px auto;
   width: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
