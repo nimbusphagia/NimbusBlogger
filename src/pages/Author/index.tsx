@@ -7,6 +7,16 @@ export function Author() {
   const fetcher = useFetcher();
   const [passwordPrompt, setPasswordPrompt] = useState<boolean>(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (fetcher.data?.type === 'changePassword') {
+      setPasswordPrompt(false);
+      setSuccessMsg('Password changed successfully!');
+      const timer = setTimeout(() => setSuccessMsg(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [fetcher.data]);
   useEffect(() => {
     if (textareaRef.current) {
       autoResize(textareaRef.current)
@@ -38,6 +48,7 @@ export function Author() {
       <header
         className={style.header}>
         <h1>Author</h1>
+        {successMsg && <p className={style.success}>{successMsg}</p>}
       </header>
       <fetcher.Form
         className={style.main}

@@ -22,11 +22,36 @@
   width: 92%;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .header h1 {
   color: var(--pink1);
   font-size: 35px;
 }
 
+.success {
+  color: var(--yellow1);
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 .formItem {
   display: grid;

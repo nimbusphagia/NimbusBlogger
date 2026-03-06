@@ -5,7 +5,6 @@ export async function apiClient<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const token = localStorage.getItem("token");
-
   const res = await fetch(BASE_URL + url, {
     ...options,
     headers: {
@@ -16,13 +15,13 @@ export async function apiClient<T>(
   });
 
   if (!res.ok) {
-    throw res;
+    const body = await res.json().catch(() => null);
+    const error = new Error(body?.message ?? 'Request failed') as Error & { status: number };
+    error.status = res.status;
+    throw error;
   }
 
-  if (res.status === 204) {
-    return null as T;
-  }
-
+  if (res.status === 204) return null as T;
   const text = await res.text();
   return text ? (JSON.parse(text) as T) : (null as T);
 }

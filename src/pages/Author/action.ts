@@ -38,14 +38,23 @@ export async function authorAction({ request }: ActionFunctionArgs) {
       const validationError = validatePasswordChange(oldPassword, newPassword, confirmPassword);
       if (validationError) return validationError;
 
-      await apiClient(`/users/${authorId}`, { method: 'PATCH', body: JSON.stringify({ name, email, password: newPassword }) });
-      return { type: 'changePassword' };
+      await apiClient(`/users/${authorId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          name,
+          email,
+          oldPassword,
+          password: newPassword
+        })
+      });
+      return { type: 'changePassword', message: 'Password updated successfully' };
     } else {
       await apiClient(`/users/${authorId}`, { method: 'PATCH', body: JSON.stringify({ name, imgUrl, description, email }) });
       return { type: 'updateInfo' };
     }
   } catch (error) {
     if (error instanceof Response) throw error;
+    if (error instanceof Error) return { type: 'error' as const, message: error.message };
     return { type: 'error' as const, message: 'Server error' };
   }
 }
