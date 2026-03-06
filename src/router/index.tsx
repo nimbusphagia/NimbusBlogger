@@ -14,6 +14,7 @@ import { editorAction } from "../pages/Editor/editorAction";
 import { entriesAction } from "../pages/Entries/action";
 import { Author } from "../pages/Author";
 import { authorLoader } from "../pages/Author/loader";
+import { authorAction } from "../pages/Author/action";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
         path: 'author',
         Component: Author,
         loader: authorLoader,
+        action: authorAction,
       }
     ],
   },

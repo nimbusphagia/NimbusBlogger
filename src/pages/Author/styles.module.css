@@ -2,7 +2,207 @@
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   background-color: var(--blue1);
-  padding: 15px;
+  padding: 17px;
   font-family: var(--f4);
   color: var(--pink0);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 700px;
+  margin: 0 auto;
+  margin-top: 5px;
+  align-items: center;
+  position: relative;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 92%;
+}
+
+.header h1 {
+  color: var(--pink1);
+  font-size: 35px;
+}
+
+
+.formItem {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+
+.formItem label {
+  font-size: 19px;
+  color: var(--orange1);
+}
+
+.formItem textarea {
+  resize: none;
+  line-height: 1.2;
+}
+
+.body input,
+.body textarea {
+  color: var(--orange0);
+  font-size: 18px;
+  font-family: 'Dico';
+  font-weight: 900;
+  text-align: center;
+  padding: 5px;
+  border: 2.5px dashed transparent;
+  border-radius: 5px;
+}
+
+.body input:focus,
+.body textarea:focus {
+  outline: none;
+  box-shadow: none;
+  border: 2.5px dashed;
+  background-color: rgb(0, 0, 0, 0.05);
+}
+
+.passwordPrompt {
+  font-size: 20px;
+  color: var(--pink0);
+  background-color: var(--red0);
+  width: 45%;
+  height: 100%;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  transition: background-color ease-in 0.1s;
+}
+
+.passwordPrompt:hover {
+  background-color: var(--red1);
+}
+
+.veil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255, 0.02);
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+  z-index: 9;
+}
+
+
+.passwordForm {
+  position: absolute;
+  background-color: var(--dullRed);
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  font-size: 18px;
+  padding: 20px;
+  padding-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 8px;
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.passwordForm h1 {
+  color: var(--yellow1);
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.passwordForm .formItem {
+  grid-template-columns: 1fr 1fr;
+}
+
+.passwordForm label {
+  font-size: 18px;
+}
+
+.passwordForm input {
+  background-color: rgb(0, 0, 0, 0.05);
+}
+
+.passwordBtns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.passwordBtns button {
+  border-radius: 5px;
+  color: var(--yellow1);
+}
+
+.returnBtn {
+  background-color: transparent;
+  opacity: 0.8;
+  transition: opacity ease-in 0.1s;
+}
+
+.returnBtn:hover {
+  opacity: 1;
+}
+
+.submitBtn {
+  background-color: var(--red0);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  transition: background-color ease-in 0.1s;
+}
+
+.submitBtn:hover {
+  background-color: var(--red1);
+}
+
+.profileImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  min-height: 50px;
+  position: relative;
+}
+
+.profileImg img {
+  height: 350px;
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profileImg input {
+  position: absolute;
+  width: 90%;
+  bottom: 10px;
+  background-color: rgb(0, 0, 0, 0.2);
+  font-weight: 900;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.profileImg input:focus {
+  background-color: rgb(0, 0, 0, 0.6);
+  color: var(--pink1);
+}
+
+.error {
+  color: var(--orange0);
+  text-align: center;
+  padding-bottom: 15px;
+  font-family: 'Dito';
+  font-weight: 900;
+  font-size: 22px;
 }
