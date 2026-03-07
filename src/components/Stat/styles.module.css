@@ -1,7 +1,10 @@
 .item {
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding: 10px 15px;
-  background-color: var(--blue1);
-  color: var(--yellow1);
+  color: var(--dark);
+  border: 3.5px dashed;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(0, 0, 0, 0.08);
+  gap: 10px;
 }

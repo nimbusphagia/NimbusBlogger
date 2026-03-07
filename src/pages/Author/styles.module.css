@@ -10,7 +10,6 @@
   gap: 20px;
   min-width: 700px;
   margin: 0 auto;
-  margin-top: 5px;
   align-items: center;
   position: relative;
 }
@@ -30,8 +29,12 @@
 }
 
 .header h1 {
+  width: fit-content;
+  margin: auto;
   color: var(--pink1);
-  font-size: 35px;
+  font-size: 30px;
+  text-decoration: underline 5px var(--pink1) dotted;
+  text-underline-offset: 5px;
 }
 
 .success {
@@ -220,7 +223,8 @@
 
 .profileImg input:focus {
   background-color: rgb(0, 0, 0, 0.6);
-  color: var(--pink1);
+  color: var(--orange1);
+  border-color: var(--orange0);
 }
 
 .error {
@@ -230,4 +234,24 @@
   font-family: 'Dito';
   font-weight: 900;
   font-size: 22px;
+}
+
+.logout {
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.logout button {
+  padding: 5px 15px;
+  color: var(--dark);
+  border: 3px dashed transparent;
+  border-radius: 2px;
+  transition: color ease-out 0.1s, transform, border-color ease-out 0.1s;
+}
+
+.logout button:hover {
+  color: var(--red1);
+  border-color: var(--red1);
+  transform: scale(1.01)
 }

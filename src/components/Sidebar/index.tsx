@@ -4,6 +4,9 @@ import styles from './styles.module.css'
 export default function Sidebar() {
   return (
     <aside className={styles.aside}>
+      <div className={styles.logo}>
+        <p >NimbusBlogger</p>
+      </div>
       <div className={styles.item}>
         <NavLink
           to="/"
@@ -31,6 +34,7 @@ export default function Sidebar() {
           Author
         </NavLink>
       </div>
+
     </aside>
   )
 }

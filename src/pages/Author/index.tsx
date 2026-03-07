@@ -1,4 +1,4 @@
-import { useFetcher, useLoaderData } from 'react-router-dom'
+import { useFetcher, useLoaderData, Form } from 'react-router-dom'
 import style from './styles.module.css'
 import { useEffect, useRef, useState, type FocusEvent } from 'react';
 
@@ -114,6 +114,9 @@ export function Author() {
             onClick={() => setPasswordPrompt(true)}
           >Change</button>
         </div>
+
+
+
         {passwordPrompt && (
           <div className={style.veil}>
             <div
@@ -173,6 +176,11 @@ export function Author() {
           </div>
         )}
       </fetcher.Form >
+      <div className={style.logout}>
+        <Form method="post" action="/logout">
+          <button type="submit">Logout</button>
+        </Form>
+      </div>
     </div>
   )
 }

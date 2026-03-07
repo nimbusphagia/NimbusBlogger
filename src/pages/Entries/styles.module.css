@@ -54,13 +54,18 @@
   font-size: 16px;
   border-radius: 5px;
   padding: 8px 15px;
-  border: 3px dashed var(--dark);
+  border: 3px dashed var(--orange0);
   color: var(--orange0);
+  opacity: 0.9;
+  transition: opacity ease-in 0.1s;
+}
+
+.entry:hover {
+  opacity: 1;
 }
 
 .entry.published {
   color: var(--orange1);
-  border-color: var(--orange1);
 }
 
 .actions {
@@ -71,13 +76,12 @@
 
 .entry,
 .delBtn,
-.createBtn {
-  transition: transform ease-in 0.2s, color ease-in 0.2s;
+.createBtn,
+.publishBtn,
+.unpublishBtn {
+  transition: transform ease-out 0.1s, color ease-in 0.1s;
 }
 
-.entry a:hover {
-  color: var(--pink1);
-}
 
 .delBtn {
   color: var(--red0);
@@ -86,7 +90,7 @@
 
 .delBtn:hover {
   color: var(--red1);
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .main .hiddenForm {
@@ -104,4 +108,9 @@
 
 .unpublishBtn {
   color: var(--orange0);
+}
+
+.publishBtn:hover,
+.unpublishBtn:hover {
+  transform: scale(1.01);
 }

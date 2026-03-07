@@ -1,5 +1,49 @@
 .main {
-  border-radius: 3px;
-  box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
-  padding: 10px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 20px;
+  padding-bottom: 30px;
+  color: var(--yellow1);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background-color: rgb(0, 0, 0, 0.15);
+  opacity: 0.9;
+}
+
+.header {
+  font-size: 22px;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.entry {
+  border: 2.5px dashed;
+  border-radius: 5px;
+  padding: 7px 0;
+  background-color: rgb(0, 0, 0, 0.05);
+  opacity: 0.9;
+  font-family: 'Dico';
+  font-size: 20px;
+  font-weight: 1000;
+  font-style: italic;
+  transition: opacity ease-in 0.2s, background-color ease-in 0.1s, transform ease-in 0.1s;
+}
+
+.entry:hover {
+  opacity: 1;
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.entry a {
+  transition: transform ease-in 0.2s;
+}
+
+.entry a:hover {
+  transform: scale(1.01);
 }

@@ -14,7 +14,7 @@ export async function authLoader(): Promise<User | Response> {
 
   } catch (error) {
     console.log(error);
-    return redirect("/auth")
+    return redirect("/login")
   }
 }
 

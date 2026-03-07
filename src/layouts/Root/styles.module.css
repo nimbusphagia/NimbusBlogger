@@ -4,5 +4,6 @@
   flex-direction: column;
   min-height: calc(100vh - 24px);
   margin: 15px 25px;
-  gap: 17px;
+  gap: 28px;
+  padding-bottom: 30px;
 }

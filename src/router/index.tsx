@@ -15,6 +15,7 @@ import { entriesAction } from "../pages/Entries/action";
 import { Author } from "../pages/Author";
 import { authorLoader } from "../pages/Author/loader";
 import { authorAction } from "../pages/Author/action";
+import { logoutAction } from "./logoutAction";
 
 export const router = createBrowserRouter([
   {
@@ -55,8 +56,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/auth",
+    path: "/login",
     Component: Login,
     action: loginAction,
+  },
+  {
+    path: "/logout",
+    action: logoutAction,
   }
 ])
